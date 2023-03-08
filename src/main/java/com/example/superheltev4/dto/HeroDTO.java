@@ -6,15 +6,16 @@ public class HeroDTO {
     private int id;
     private String realName;
     private String heroName;
-    private LocalDate creationDate;
+    private int creationYear;
 
 
 
-    public HeroDTO(int id, String realName, String heroName, LocalDate creationDate) {
+
+    public HeroDTO(int id, String realName, String heroName, int creationYear) {
         this.id = id;
         this.realName = realName;
         this.heroName = heroName;
-        this.creationDate = creationDate;
+        this.creationYear = creationYear;
     }
 
     public int getId() {
@@ -29,8 +30,8 @@ public class HeroDTO {
         return heroName;
     }
 
-    public LocalDate getCreationDate() {
-        return creationDate;
+    public int getCreationYear() {
+        return creationYear;
     }
 
 

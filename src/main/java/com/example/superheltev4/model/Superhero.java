@@ -1,80 +1,50 @@
 package com.example.superheltev4.model;
 
 public class Superhero {
+
     // attributes
+    private int id;
     private String realName;
     private String heroName;
     private int creationYear;
-    private String superPower;
-    private double power;
+    private int superpowerID;
+    private String cityID;
 
 
     // constructor
-    public Superhero(String realName, String heroName, int creationYear, String superPower, double power) {
+    public Superhero(int id, String realName, String heroName, int creationYear, int superpowerID, String cityID) {
+        this.id = id;
         this.realName = realName;
         this.heroName = heroName;
         this.creationYear = creationYear;
-        this.superPower = superPower;
-        this.power = power;
+        this.superpowerID = superpowerID;
+        this.cityID = cityID;
     }
 
-    public Superhero() {
-        //skal være tom til at loade data
-    }
 
-    // Printing out if heroName is empty
-    public String getHeroName() {
-        if (heroName.isEmpty()) {
-            return "Intet superhelte navn";
-        } else {
-            return heroName;
-        }
+    public int getId() {
+        return id;
     }
 
     public String getRealName() {
         return realName;
     }
 
-    public String getSuperPower() {
-        return superPower;
+    public String getHeroNameName() {
+        return heroName;
     }
 
     public int getCreationYear() {
         return creationYear;
     }
 
-    public double getPower() {
-        return power;
+    public int getSuperpowerID() {
+        return superpowerID;
     }
 
-    // setting new hero name
-    public void setHeroName(String newHeroName) {
-        this.heroName = newHeroName;
-    }
-
-    // setting new superpower
-    public void setSuperPower(String newSuperPower) {
-        this.superPower = newSuperPower;
-    }
-
-    // setting new real name
-    public void setRealName(String newRealName) {
-        this.realName = newRealName;
-    }
-
-    // setting new power
-    public void setPower(String newPower) {
-        this.power = Double.parseDouble(newPower);
-    }
-
-    // setting new creation year
-    public void setCreationYear(String newCreationYear) {
-        this.creationYear = Integer.parseInt(newCreationYear);
+    public String getCityID() {
+        return cityID;
     }
 
 
-    @Override
-    public String toString() {
-        return heroName + " " + realName + " " + creationYear + " " + superPower  + " " + power;
-    }
 }
