@@ -1,26 +1,24 @@
 package com.example.superheltev4.model;
 
-public class Superhelt {
+public class Superhero {
     // attributes
     private String realName;
     private String heroName;
     private int creationYear;
     private String superPower;
-    private boolean isHuman;
     private double power;
 
 
     // constructor
-    public Superhelt(String realName, String heroName, int creationYear, String superPower, boolean isHuman, double power) {
+    public Superhero(String realName, String heroName, int creationYear, String superPower, double power) {
         this.realName = realName;
         this.heroName = heroName;
         this.creationYear = creationYear;
         this.superPower = superPower;
-        this.isHuman = isHuman;
         this.power = power;
     }
 
-    public Superhelt() {
+    public Superhero() {
         //skal være tom til at loade data
     }
 
@@ -49,11 +47,6 @@ public class Superhelt {
         return power;
     }
 
-    // Returning different than "true" or "false" when printing isHuman boolean
-    public boolean isHuman() {
-        return isHuman;
-    }
-
     // setting new hero name
     public void setHeroName(String newHeroName) {
         this.heroName = newHeroName;
@@ -79,12 +72,9 @@ public class Superhelt {
         this.creationYear = Integer.parseInt(newCreationYear);
     }
 
-    public void setHuman(boolean human) {
-        this.isHuman = human;
-    }
 
     @Override
     public String toString() {
-        return heroName + " " + realName + " " + creationYear + " " + superPower + " " + isHuman + " " + power;
+        return heroName + " " + realName + " " + creationYear + " " + superPower  + " " + power;
     }
 }

@@ -1,39 +1,46 @@
 package com.example.superheltev4.service;
 
-import com.example.superheltev4.model.Superhelt;
+import com.example.superheltev4.model.Superhero;
+import com.example.superheltev4.repository.Repository_DB;
 import com.example.superheltev4.repository.SuperheltRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class SuperheltService {
+
     private SuperheltRepository superheltRepository;
+    Repository_DB myRepositoryDB;
+
+    public void MyService(Repository_DB myRepositorydb) {
+        this.myRepositoryDB = myRepositorydb;
+    }
+
 
     public SuperheltService(SuperheltRepository superheltRepository){
         this.superheltRepository = superheltRepository;
     }
 
-    public List<Superhelt> getSuperhelte(){
+    public List<Superhero> getSuperhelte(){
         return superheltRepository.getSuperhelte();
     }
 
-    public List<Superhelt> searchForSuperhero(String searchTerm) {
+    public List<Superhero> searchForSuperhero(String searchTerm) {
         return superheltRepository.searchForSuperhero(searchTerm);
     }
 
-    public Superhelt createSuperHero(String realName, String heroName,
-                                     int creationYear, String superPower, boolean isHuman, double power) {
-        return superheltRepository.createSuperHero(realName, heroName, creationYear, superPower, isHuman, power);
+    public Superhero createSuperHero(String realName, String heroName,
+                                     int creationYear, String superPower, double power) {
+        return superheltRepository.createSuperHero(realName, heroName, creationYear, superPower, power);
     }
 
-    public List<Superhelt> deleteSuperhero(String searchTerm){
+    public List<Superhero> deleteSuperhero(String searchTerm){
         return superheltRepository.deleteSuperhero(searchTerm);
     }
 
-    public Superhelt editSuperhero(Superhelt superhelt){
-        Superhelt retSuperhelt = superheltRepository.editSuperhero(superhelt);
-        return retSuperhelt;
+    public Superhero editSuperhero(Superhero superhero){
+        Superhero retSuperhero = superheltRepository.editSuperhero(superhero);
+        return retSuperhero;
     }
 }
