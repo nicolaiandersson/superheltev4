@@ -30,7 +30,7 @@ public class Superhero {
         return realName;
     }
 
-    public String getHeroNameName() {
+    public String getHeroName() {
         return heroName;
     }
 

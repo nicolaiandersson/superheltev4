@@ -1,48 +1,48 @@
 package com.example.superheltev4.repository;
 import com.example.superheltev4.dto.HeroDTO;
 import com.example.superheltev4.model.Superhero;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class Repository_DB{
+    private final String db_url;
+    private final String uid;
+    private final String pwd;
 
-    @Value("${spring.datasource.url}")
-    private String db_url;
+    public Repository_DB(@Value("${spring.datasource.url}") String db_url,
+                         @Value("${spring.datasource.username}") String uid,
+                         @Value("${spring.datasource.password}") String pwd) {
+        this.db_url = db_url;
+        this.uid = uid;
+        this.pwd = pwd;
+    }
 
-    @Value("${spring.datasource.username}")
-    private String uid;
-
-    @Value("${spring.datasource.password}")
-    private String pwd;
 
     public List<Superhero> getHeroes() {
         List<Superhero> heroes = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection(db_url,uid,pwd)) {
-            String sql = "SELECT * FROM superhero";
-            PreparedStatement st = conn.prepareStatement(sql);
+        try (Connection conn = DriverManager.getConnection(db_url, uid, pwd)) {
+            String SQL = "SELECT * FROM superhero";
+            PreparedStatement st = conn.prepareStatement(SQL);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                int ID = rs.getInt("SUPERHERO_ID");
-                String heroName = rs.getString("HERO_NAME");
-                String realName = rs.getString("REAL_NAME");
-                int creationYear = rs.getInt("CREATION_YEAR");
-                int superpowerID = rs.getInt("SUPERPOWER_ID");
-                String cityID = rs.getString("CITY_ID");
-                Superhero hero = new Superhero(ID, heroName, realName, creationYear, superpowerID, cityID);
+                Superhero hero = new Superhero(
+                        rs.getInt("SUPERHERO_ID"),
+                        rs.getString("HERO_NAME"),
+                        rs.getString("REAL_NAME"),
+                        rs.getInt("CREATION_YEAR"),
+                        rs.getInt("SUPERPOWER_ID"),
+                        rs.getString("CITY_ID")
+                );
                 heroes.add(hero);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return heroes;
     }
 
@@ -50,19 +50,20 @@ public class Repository_DB{
     public List<Superhero> getSuperhero(String heroSearch) {
         List<Superhero> results = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(db_url,uid,pwd)) {
-            String sql = "SELECT * FROM superhero WHERE lower(HERO_NAME) LIKE ?";
-            PreparedStatement st = conn.prepareStatement(sql);
+            String SQL = "SELECT * FROM superhero WHERE lower(HERO_NAME) LIKE ?";
+            PreparedStatement st = conn.prepareStatement(SQL);
             st.setString(1, "%" + heroSearch.toLowerCase() + "%");
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                int ID = rs.getInt("SUPERHERO_ID");
-                String name = rs.getString("HERO_NAME");
-                String realName = rs.getString("REAL_NAME");
-                int creationYear = rs.getInt("CREATION_YEAR");
-                int superpowerID = rs.getInt("SUPERPOWER_ID");
-                String cityID = rs.getString("CITY_ID");
-                Superhero hero = new Superhero(ID, name, realName, creationYear, superpowerID, cityID);
+                Superhero hero = new Superhero(
+                        rs.getInt("SUPERHERO_ID"),
+                        rs.getString("HERO_NAME"),
+                        rs.getString("REAL_NAME"),
+                        rs.getInt("CREATION_YEAR"),
+                        rs.getInt("SUPERPOWER_ID"),
+                        rs.getString("CITY_ID")
+                );
                 results.add(hero);
             }
 
