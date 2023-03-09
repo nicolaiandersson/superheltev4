@@ -22,21 +22,19 @@ public class Repository_DB{
     }
 
 
-    public List<Superhero> getHeroes() {
-        List<Superhero> heroes = new ArrayList<>();
+    public List<HeroDTO> getHeroes() {
+        List<HeroDTO> heroes = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(db_url, uid, pwd)) {
             String SQL = "SELECT * FROM superhero";
             PreparedStatement st = conn.prepareStatement(SQL);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                Superhero hero = new Superhero(
+                HeroDTO hero = new HeroDTO(
                         rs.getInt("SUPERHERO_ID"),
                         rs.getString("HERO_NAME"),
                         rs.getString("REAL_NAME"),
-                        rs.getInt("CREATION_YEAR"),
-                        rs.getInt("SUPERPOWER_ID"),
-                        rs.getString("CITY_ID")
+                        rs.getInt("CREATION_YEAR")
                 );
                 heroes.add(hero);
             }
@@ -47,8 +45,8 @@ public class Repository_DB{
     }
 
 
-    public List<Superhero> getSuperhero(String heroSearch) {
-        List<Superhero> results = new ArrayList<>();
+    public List<HeroDTO> getSuperhero(String heroSearch) {
+        List<HeroDTO> results = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(db_url,uid,pwd)) {
             String SQL = "SELECT * FROM superhero WHERE lower(HERO_NAME) LIKE ?";
             PreparedStatement st = conn.prepareStatement(SQL);
@@ -56,13 +54,11 @@ public class Repository_DB{
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                Superhero hero = new Superhero(
+                HeroDTO hero = new HeroDTO(
                         rs.getInt("SUPERHERO_ID"),
                         rs.getString("HERO_NAME"),
                         rs.getString("REAL_NAME"),
-                        rs.getInt("CREATION_YEAR"),
-                        rs.getInt("SUPERPOWER_ID"),
-                        rs.getString("CITY_ID")
+                        rs.getInt("CREATION_YEAR")
                 );
                 results.add(hero);
             }

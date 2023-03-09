@@ -15,14 +15,20 @@ public class Service {
         this.repository = repository;
     }
 
-    public List<Superhero> getHeroes() {
-        return repository.getHeroes();
+    public List<HeroDTO> getHeroes() {
+        List<HeroDTO> results = new ArrayList<>();
+        List<HeroDTO> superheroes = repository.getHeroes();
+        for (HeroDTO hero : superheroes) {
+            results.add(new HeroDTO(hero.getId(), hero.getRealName(), hero.getRealName(), hero.getCreationYear()));
+        }
+        return results;
     }
+
 
     public List<HeroDTO> getSuperHero(String heroSearch) {
         List<HeroDTO> results = new ArrayList<>();
-        List<Superhero> superheroes = repository.getSuperhero(heroSearch);
-        for (Superhero hero : superheroes) {
+        List<HeroDTO> superheroes = repository.getSuperhero(heroSearch);
+        for (HeroDTO hero : superheroes) {
             results.add(new HeroDTO(hero.getId(), hero.getRealName(), hero.getRealName(), hero.getCreationYear()));
         }
         return results;

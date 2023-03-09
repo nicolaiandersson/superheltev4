@@ -24,8 +24,8 @@ public class SuperheroController {
 
 
     @GetMapping(path = "superheroes")
-    public ResponseEntity<List<Superhero>> getSuperheroes() {
-        List<Superhero> superheroesList = service.getHeroes();
+    public ResponseEntity<List<HeroDTO>> getSuperheroes() {
+        List<HeroDTO> superheroesList = service.getHeroes();
         return new ResponseEntity<>(superheroesList, HttpStatus.OK);
     }
 
