@@ -30,9 +30,9 @@ public class SuperheroController {
     }
 
     @GetMapping(path = "/{name}")
-    public ResponseEntity<List<Superhero>> getSuperHero(@PathVariable("name") String name){
-        List<Superhero> searchResults = service.getSuperHero(name);
-        return new ResponseEntity<>(searchResults, HttpStatus.OK);
+    public ResponseEntity<List<HeroDTO>> getSuperHero(@PathVariable("name") String heroName){
+        List<HeroDTO> superheroes = service.getSuperHero(heroName);
+        return new ResponseEntity<>(superheroes, HttpStatus.OK);
     }
 
 }

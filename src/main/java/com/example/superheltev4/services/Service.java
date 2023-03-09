@@ -19,13 +19,12 @@ public class Service {
         return repository.getHeroes();
     }
 
-    public List<Superhero> getSuperHero(String searchString) {
-        List<Superhero> searchList = new ArrayList<>();
-        List<Superhero> superheroes = repository.getSuperhero(searchString);
+    public List<HeroDTO> getSuperHero(String heroSearch) {
+        List<HeroDTO> results = new ArrayList<>();
+        List<Superhero> superheroes = repository.getSuperhero(heroSearch);
         for (Superhero hero : superheroes) {
-            searchList.add(new Superhero(hero.getId(), hero.getRealName(), hero.getRealName(), hero.getCreationYear(),
-                    hero.getSuperpowerID(),hero.getCityID()));
+            results.add(new HeroDTO(hero.getId(), hero.getRealName(), hero.getRealName(), hero.getCreationYear()));
         }
-        return searchList;
+        return results;
     }
 }

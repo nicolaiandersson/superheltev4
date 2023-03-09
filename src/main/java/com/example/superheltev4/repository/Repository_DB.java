@@ -25,8 +25,8 @@ public class Repository_DB{
         List<Superhero> heroes = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(db_url,uid,pwd)) {
             String sql = "SELECT * FROM superhero";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+            PreparedStatement st = conn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
                 int ID = rs.getInt("SUPERHERO_ID");
@@ -47,13 +47,13 @@ public class Repository_DB{
     }
 
 
-    public List<Superhero> getSuperhero(String heroName) {
-        List<Superhero> heroes = new ArrayList<>();
+    public List<Superhero> getSuperhero(String heroSearch) {
+        List<Superhero> results = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(db_url,uid,pwd)) {
-            String sql = "SELECT * FROM superhero WHERE HERO_NAME = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, heroName);
-            ResultSet rs = stmt.executeQuery();
+            String sql = "SELECT * FROM superhero WHERE lower(HERO_NAME) LIKE ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, "%" + heroSearch.toLowerCase() + "%");
+            ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
                 int ID = rs.getInt("SUPERHERO_ID");
@@ -63,13 +63,13 @@ public class Repository_DB{
                 int superpowerID = rs.getInt("SUPERPOWER_ID");
                 String cityID = rs.getString("CITY_ID");
                 Superhero hero = new Superhero(ID, name, realName, creationYear, superpowerID, cityID);
-                heroes.add(hero);
+                results.add(hero);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return heroes;
+        return results;
     }
 }
