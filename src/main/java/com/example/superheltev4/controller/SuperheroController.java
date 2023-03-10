@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("superhero")
+@RequestMapping("/superheroes")
 public class SuperheroController {
 
      private final Service service;
@@ -23,7 +23,7 @@ public class SuperheroController {
      }
 
 
-    @GetMapping(path = "superheroes")
+    @GetMapping(path = "all")
     public ResponseEntity<List<HeroDTO>> getSuperheroes() {
         List<HeroDTO> superheroesList = service.getHeroes();
         return new ResponseEntity<>(superheroesList, HttpStatus.OK);

@@ -1,8 +1,9 @@
 package com.example.superheltev4.repository;
+
 import com.example.superheltev4.dto.HeroDTO;
-import com.example.superheltev4.model.Superhero;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
