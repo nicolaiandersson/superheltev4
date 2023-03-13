@@ -83,11 +83,8 @@ public class Repository_DB implements IRepository {
 
     public List<HeroPowerCountDTO> countHeroPowers(String heroSearch) {
         try (Connection conn = DriverManager.getConnection(db_url, uid, pwd)) {
-            String SQL = "SELECT HERO_NAME, REAL_NAME, COUNT(SUPERHERO_ID) AS POWER_COUNT " +
-                    "FROM superhero " +
-                    "JOIN superpower ON SUPERPOWER_ID = SUPERPOWER_ID " +
-                    "WHERE HERO_NAME LIKE CONCAT('%', ?, '%') " +
-                    "GROUP BY HERO_NAME";
+            String SQL = "SELECT HERO_NAME, REAL_NAME, COUNT(SUPERPOWER_ID) AS POWER_COUNT FROM SUPERHEROES" +
+                    " INNER JOIN SUPERHEROPOWER USING(SUPERHERO_ID) WHERE HERO_NAME = ? GROUP BY HERO_NAME, REAL_NAME;";
 
             PreparedStatement st = conn.prepareStatement(SQL);
             st.setString(1, heroSearch.toLowerCase());

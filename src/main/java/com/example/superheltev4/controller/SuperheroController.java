@@ -6,7 +6,6 @@ import com.example.superheltev4.dto.HeroPowerCountDTO;
 import com.example.superheltev4.dto.HeroSuperPowerDTO;
 import com.example.superheltev4.model.Superhero;
 import com.example.superheltev4.repository.IRepository;
-import com.example.superheltev4.services.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
