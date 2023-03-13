@@ -3,31 +3,19 @@ package com.example.superheltev4.dto;
 import java.time.LocalDate;
 
 public class HeroCityDTO {
-    private int id;
-    private String heroName;
-    private String city;
-    private LocalDate creationDate;
+    private String heroes;
+    private String cityName;
 
-    public HeroCityDTO(int id, String heroName, String city, LocalDate creationDate) {
-        this.id = id;
-        this.heroName = heroName;
-        this.city = city;
-        this.creationDate = creationDate;
+    public HeroCityDTO(String heroes, String cityName) {
+        this.heroes = heroes;
+        this.cityName = cityName;
     }
 
-    public int getId() {
-        return id;
+    public String getHeroes() {
+        return heroes;
     }
 
-    public String getHeroName() {
-        return heroName;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
+    public String getCityName() {
+        return cityName;
     }
 }

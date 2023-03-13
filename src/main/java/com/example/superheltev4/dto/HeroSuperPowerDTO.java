@@ -1,34 +1,28 @@
 package com.example.superheltev4.dto;
 
-import java.time.LocalDate;
-
 public class HeroSuperPowerDTO {
-    private int id;
     private String heroName;
-    private String superPower;
-    private LocalDate creationDate;
+    private String realName;
+    private String superPowers;
 
-    public HeroSuperPowerDTO(int id, String heroName, String superPower, LocalDate creationDate) {
-        this.id = id;
+
+    public HeroSuperPowerDTO(String heroName, String realName, String superPowers) {
         this.heroName = heroName;
-        this.superPower = superPower;
-        this.creationDate = creationDate;
+        this.realName = realName;
+        this.superPowers = superPowers;
+
     }
 
-    public int getId() {
-        return id;
-    }
 
     public String getHeroName() {
         return heroName;
     }
 
-    public String getSuperPower() {
-        return superPower;
+    public String getRealName() {
+        return realName;
     }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
+    public String getSuperPowers() {
+        return superPowers;
     }
 
 }

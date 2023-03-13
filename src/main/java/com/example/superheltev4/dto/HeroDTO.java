@@ -3,6 +3,8 @@ package com.example.superheltev4.dto;
 import java.time.LocalDate;
 
 public class HeroDTO {
+
+
     private int id;
     private String realName;
     private String heroName;
@@ -33,7 +35,6 @@ public class HeroDTO {
     public int getCreationYear() {
         return creationYear;
     }
-
 
 }
 

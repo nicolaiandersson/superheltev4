@@ -1,6 +1,7 @@
 package com.example.superheltev4.services;
 
 import com.example.superheltev4.dto.HeroDTO;
+import com.example.superheltev4.dto.HeroPowerCountDTO;
 import com.example.superheltev4.repository.Repository_DB;
 
 import java.util.ArrayList;
@@ -27,10 +28,15 @@ public class Service {
 
     public List<HeroDTO> getSuperHero(String heroSearch) {
         List<HeroDTO> results = new ArrayList<>();
-        List<HeroDTO> superheroes = repository.getSuperhero(heroSearch);
+        List<HeroDTO> superheroes = repository.getSuperHero(heroSearch);
         for (HeroDTO hero : superheroes) {
             results.add(new HeroDTO(hero.getId(), hero.getRealName(), hero.getRealName(), hero.getCreationYear()));
         }
         return results;
     }
+
+    public List<HeroPowerCountDTO> countHeroPowers(String heroSearch) {
+        return repository.countHeroPowers(heroSearch);
+    }
+
 }
